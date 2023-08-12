@@ -47,7 +47,7 @@ else
    echo ".env file dose not exists!"
    exit 2
 fi
-echo -e "/n"
+echo -e "\n"
 
 # Preparing os ----------------------------------------------------
 # Update OS
