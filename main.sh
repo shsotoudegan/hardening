@@ -39,6 +39,7 @@ else
 fi
 
 # Source .env file ------------------------------------------------
+echo "Loading Envirment"
 if [ -f $ENV_FILE ]; then
    echo ".env is exists"
    source $ENV_FILE
@@ -46,6 +47,7 @@ else
    echo ".env file dose not exists!"
    exit 2
 fi
+echo -e "/n"
 
 # Preparing os ----------------------------------------------------
 # Update OS
