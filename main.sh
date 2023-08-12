@@ -29,7 +29,8 @@ echo -e "Base Dir: $BASE_DIR"
 echo -e "ENV file: $ENV_FILE"
 echo -e "SSH Port: $SSH_PORT"
 echo "------------------------------------------"
-
+echo ""
+echo ""
 # create directory backup -----------------------------------------
 if [ -d $BAC_DIR ] ; then
    echo "backup directory is exist"
