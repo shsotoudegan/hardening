@@ -1,36 +1,51 @@
 #!/bin/bash
 
 
-# File Inputs ------------------------------------------------
+# File Inputs ------------------------------------------------------
 # $1 => Domain Name
 # $2 => Host Name
+# $3 => SSH Port
 
-# Time Variable Section --------------------------------------
+# Time Variable Section --------------------------------------------
 HOUR=`date +%H`
 WEEK=`date +%A`
 MONTH=`date +%Y-%d`
 DAY=`date +%Y-%m-%d`
 NOW="$(date +"%Y-%m-%d_%H-%M-%S")"
 
-# Variable Section -------------------------------------------
+# Variable Section -------------------------------------------------
 DOMAIN_NAME=$1
 HostName=$2
-SSH_PORT=1242
-BAC_DIR=/opt/backup/files_$NOW
+SSH_PORT=$3
+BAC_DIR=/var/backup/files_$NOW
+BASE_DIR=$(pwd)
+ENV_FILE="$BASE_DIR.env"
 
 echo "Info: ------------------------------------"
 echo -e "DNS Address:\n`cat /etc/resolv.conf`"
 echo -e "Hostname: $HOSTNAME"
+echo -e "Domain Name: $HOSTNAME"
 echo -e "OS Info:\n`lsb_release -a`"
-echo -e "ssh port: $SSH_PORT"
+echo -e "Base Dir: $BASE_DIR"
+echo -e "ENV file: $ENV_FILE"
+echo -e "SSH Port: $SSH_PORT"
 echo "------------------------------------------"
 
-# create directory backup ------------------------------------
+# create directory backup -----------------------------------------
 if [ -d $BAC_DIR ] ; then
    echo "backup directory is exist"
 else
    mkdir -p $BAC_DIR
-fi   
+fi
+
+# Source .env file ------------------------------------------------
+if [ -f $ENV_FILE ]; then
+   echo ".env is exists"
+   source $ENV_FILE
+else
+   echo ".env file dose not exists!"
+   exit 2
+fi
 
 # Preparing os ----------------------------------------------------
 # Update OS
@@ -217,10 +232,7 @@ systemctl is-active --quiet sshd && echo -e "\e[1m \e[96m sshd service: \e[30;48
 }
 
 #Copy Public Key -------------------------------------------
-#cat <<EOT >> /root/.ssh/authorized_keys
-# AmirBahador
-# ssh-rsa YOURSSH KEY
-#EOT
+echo $SSH_KEY >> ~/.ssh//authorized_keys
 
 # fail2ban config -----------------------------------------
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
