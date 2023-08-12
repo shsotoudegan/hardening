@@ -22,8 +22,6 @@ BASE_DIR=$(pwd)
 ENV_FILE="$BASE_DIR/.env"
 
 echo "Info: ------------------------------------"
-echo -e "DNS Address:\n`cat /etc/resolv.conf`"
-echo -e "---------------\n\n"
 echo -e "Hostname: $HOSTNAME"
 echo -e "Domain Name: $HOSTNAME"
 echo -e "OS Info:\n`lsb_release -a`"
@@ -338,8 +336,8 @@ network:
       dhcp4: true
       nameservers:
         addresses:
-          - 178.22.122.100
-          - 185.51.200.2
+          - $DNS_ADD_1
+          - $DNS_ADD_2
   version: 2
 EOT
 
