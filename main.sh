@@ -23,6 +23,7 @@ ENV_FILE="$BASE_DIR/.env"
 
 echo "Info: ------------------------------------"
 echo -e "DNS Address:\n`cat /etc/resolv.conf`"
+echo -e "---------------"
 echo -e "Hostname: $HOSTNAME"
 echo -e "Domain Name: $HOSTNAME"
 echo -e "OS Info:\n`lsb_release -a`"
