@@ -19,7 +19,7 @@ HostName=$2
 SSH_PORT=$3
 BAC_DIR=/var/backup/files_$NOW
 BASE_DIR=$(pwd)
-ENV_FILE="$BASE_DIR.env"
+ENV_FILE="$BASE_DIR/.env"
 
 echo "Info: ------------------------------------"
 echo -e "DNS Address:\n`cat /etc/resolv.conf`"
