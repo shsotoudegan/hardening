@@ -175,15 +175,15 @@ LogLevel VERBOSE
 
 # Authentication:
 #LoginGraceTime 2m
-PermitRootLogin yes
-#PermitRootLogin without-password
+#PermitRootLogin yes
+PermitRootLogin without-password
 #StrictModes yes
 MaxAuthTries 3
 MaxSessions 2
 #PubkeyAuthentication yes
 
 # To disable tunneled clear text passwords, change to no here!
-PasswordAuthentication yes
+PasswordAuthentication no
 #PermitEmptyPasswords no
 
 ChallengeResponseAuthentication no
@@ -235,6 +235,11 @@ systemctl is-active --quiet sshd && echo -e "\e[1m \e[96m sshd service: \e[30;48
 
 #Copy Public Key -------------------------------------------
 echo $SSH_KEY >> ~/.ssh//authorized_keys
+
+# If do you like to allow users to login with ssh uncommit following codes
+# for [usr in /home/*]; do
+#    cp ~/.ssh/authorized_keys /home/$usr/.ssh/authorized_keys
+#    chown -R $usr:$user /home/$usr
 
 # fail2ban config -----------------------------------------
 cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local
